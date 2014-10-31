@@ -1,14 +1,15 @@
-package org.tomcat.ex02_facade;
+package ex02.pyrmont;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.net.URLStreamHandler;
-
+import java.io.File;
+import java.io.IOException;
 import javax.servlet.Servlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
-public class ServletProcessor {
+public class ServletProcessor2 {
 
   public void process(Request request, Response response) {
 
@@ -41,12 +42,11 @@ public class ServletProcessor {
     }
 
     Servlet servlet = null;
-    //使用门面模式 将最原始的 request和 response封装在内部
     RequestFacade requestFacade = new RequestFacade(request);
     ResponseFacade responseFacade = new ResponseFacade(response);
     try {
       servlet = (Servlet) myClass.newInstance();
-      servlet.service(requestFacade,responseFacade);
+      servlet.service((ServletRequest) requestFacade, (ServletResponse) responseFacade);
     }
     catch (Exception e) {
       System.out.println(e.toString());

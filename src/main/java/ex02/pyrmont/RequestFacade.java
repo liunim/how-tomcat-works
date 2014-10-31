@@ -1,6 +1,5 @@
-package org.tomcat.ex02_facade;
+package ex02.pyrmont;
 
-import java.io.InputStream;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
@@ -11,147 +10,114 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 
+public class RequestFacade implements ServletRequest {
 
-public class Request implements ServletRequest {
+  private ServletRequest request = null;
 
-  private InputStream input;
-  private String uri;
-
-  public Request(InputStream input) {
-    this.input = input;
-  }
-
-  public String getUri() {
-    return uri;
-  }
-
-  private String parseUri(String requestString) {
-    int index1, index2;
-    index1 = requestString.indexOf(' ');
-    if (index1 != -1) {
-      index2 = requestString.indexOf(' ', index1 + 1);
-      if (index2 > index1)
-        return requestString.substring(index1 + 1, index2);
-    }
-    return null;
-  }
-
-  public void parse() {
-    // Read a set of characters from the socket
-    StringBuffer request = new StringBuffer(2048);
-    int i;
-    byte[] buffer = new byte[2048];
-    try {
-      i = input.read(buffer);
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-      i = -1;
-    }
-    for (int j=0; j<i; j++) {
-      request.append((char) buffer[j]);
-    }
-    System.out.print(request.toString());
-    uri = parseUri(request.toString());
+  public RequestFacade(Request request) {
+    this.request = request;
   }
 
   /* implementation of the ServletRequest*/
   public Object getAttribute(String attribute) {
-    return null;
+    return request.getAttribute(attribute);
   }
 
   public Enumeration getAttributeNames() {
-    return null;
+    return request.getAttributeNames();
   }
 
   public String getRealPath(String path) {
-    return null;
+    return request.getRealPath(path);
   }
 
   public RequestDispatcher getRequestDispatcher(String path) {
-    return null;
+    return request.getRequestDispatcher(path);
   }
 
   public boolean isSecure() {
-    return false;
+    return request.isSecure();
   }
 
   public String getCharacterEncoding() {
-    return null;
+    return request.getCharacterEncoding();
   }
 
   public int getContentLength() {
-    return 0;
+    return request.getContentLength();
   }
 
   public String getContentType() {
-    return null;
+    return request.getContentType();
   }
 
   public ServletInputStream getInputStream() throws IOException {
-    return null;
+    return request.getInputStream();
   }
 
   public Locale getLocale() {
-    return null;
+    return request.getLocale();
   }
 
   public Enumeration getLocales() {
-    return null;
+    return request.getLocales();
   }
 
   public String getParameter(String name) {
-    return null;
+    return request.getParameter(name);
   }
 
   public Map getParameterMap() {
-    return null;
+    return request.getParameterMap();
   }
 
   public Enumeration getParameterNames() {
-    return null;
+    return request.getParameterNames();
   }
 
   public String[] getParameterValues(String parameter) {
-    return null;
+    return request.getParameterValues(parameter);
   }
 
   public String getProtocol() {
-    return null;
+    return request.getProtocol();
   }
 
   public BufferedReader getReader() throws IOException {
-    return null;
+    return request.getReader();
   }
 
   public String getRemoteAddr() {
-    return null;
+    return request.getRemoteAddr();
   }
 
   public String getRemoteHost() {
-    return null;
+    return request.getRemoteHost();
   }
 
   public String getScheme() {
-   return null;
+   return request.getScheme();
   }
 
   public String getServerName() {
-    return null;
+    return request.getServerName();
   }
 
   public int getServerPort() {
-    return 0;
+    return request.getServerPort();
   }
 
   public void removeAttribute(String attribute) {
+    request.removeAttribute(attribute);
   }
 
   public void setAttribute(String key, Object value) {
+    request.setAttribute(key, value);
   }
 
   public void setCharacterEncoding(String encoding)
     throws UnsupportedEncodingException {
+    request.setCharacterEncoding(encoding);
   }
 
 }

@@ -1,4 +1,4 @@
-package org.tomcat.ex02;
+package ex02.pyrmont;
 
 import java.io.IOException;
 

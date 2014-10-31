@@ -1,4 +1,4 @@
-package org.tomcat.ex02;
+package ex02.pyrmont;
 
 import java.net.URL;
 import java.net.URLClassLoader;

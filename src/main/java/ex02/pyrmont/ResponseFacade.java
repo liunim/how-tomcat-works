@@ -1,4 +1,4 @@
-package org.tomcat.ex02_facade;
+package ex02.pyrmont;
 
 import java.io.IOException;
 import java.io.PrintWriter;
